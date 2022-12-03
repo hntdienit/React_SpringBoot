@@ -9,8 +9,10 @@ import { createItem } from "../../utils/api";
 import BookableForm from "../../components/Bookables/Form.jsx";
 import PageSpinner from "../../components/Spinner";
 
+
 export default function BookableNew() {
   const [roleAdmin, setRoleAdmin] = useState(false);
+  const [check, setCheck] = useState(false);
   const { user: currentUser } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ export default function BookableNew() {
     mutate: createBookable,
     status,
     error,
-  } = useMutation((item) => createItem("http://localhost:8080/bookables", item), {
+  } = useMutation((item) => createItem("http://localhost:8080/api/admin/bookables", item), {
     onSuccess: (bookable) => {
       queryClient.setQueryData("bookables", (old) => [...(old || []), bookable]);
 
@@ -35,10 +37,10 @@ export default function BookableNew() {
         // console.log(role)
         if (role === "ROLE_ADMIN") 
         setRoleAdmin(true);
-        // console.log("asddas",role)
+        setCheck(true)
       });
     }
-  }, [currentUser]);
+  }, []);
 
   function handleSubmit() {
     createBookable(formState.state);
@@ -52,13 +54,17 @@ export default function BookableNew() {
     return <PageSpinner />;
   }
 
-  // if (!currentUser) {
-  //   return <Navigate to="/" />;
-  // }
+  if (!currentUser && !check) {
+    return <Navigate to="/error" />;
+  }
 
-  // if (!roleAdmin) {
-  //   return <Navigate to="/error111" />;
-  // }
+  if (!currentUser && check) {
+    return <Navigate to="/" />;
+  }
+
+  if (!roleAdmin && check) {
+    return <Navigate to="/error" />;
+  }
 
   return <BookableForm formState={formState} handleSubmit={handleSubmit} roleAdmin={roleAdmin} />;
 }

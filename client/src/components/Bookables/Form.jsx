@@ -9,19 +9,6 @@ import { useSelector } from "react-redux";
 
 export default function BookableForm({ formState = {}, handleSubmit, handleDelete, roleAdmin }) {
 
-
-  // const [roleAdmin, setRoleAdmin] = useState(false);
-  const { user: currentUser } = useSelector((state) => state.auth);
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     currentUser.roles.map((role) => {
-  //       if (role === "ROLE_ADMIN") setRoleAdmin(true);
-  //     });
-  //   }
-  // }, []);
-
-
   const { state = {}, handleChange, handleChecked } = formState;
   const { title = "", group = "", notes = "" } = state;
   const { days = [], sessions = [] } = state;
@@ -37,16 +24,6 @@ export default function BookableForm({ formState = {}, handleSubmit, handleDelet
 
   if (daysArray.isError && sessionsArray.isError) {
     return <span>Have an errors: {daysArray.error.message + sessionsArray.error.message}</span>;
-  }
-
-    if (!currentUser) {
-    return <Navigate to="/error" />;
-  }
-  
-  console.log(roleAdmin)
-  if (!roleAdmin) {
-    // return <Navigate to="/error123" />;
-    return<h1>safasfsfadf</h1>
   }
 
   return (

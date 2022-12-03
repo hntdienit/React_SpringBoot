@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Profile = () => {
@@ -11,26 +11,24 @@ const Profile = () => {
 
   return (
     <div className="container">
-      <header className="jumbotron">
-        <h3>
-          <strong>{currentUser.username}</strong> Profile
-        </h3>
-      </header>
-      <p>
+      <h1>
+      Profile
+      </h1>
+      <h2>
+        <strong>{currentUser.username}</strong>
+      </h2>
+      {/* <p>
         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-      </p>
-      <p>
+      </p> */}
+      {/* <p>
         <strong>Id:</strong> {currentUser.id}
-      </p>
+      </p> */}
       <p>
         <strong>Email:</strong> {currentUser.email}
       </p>
       <strong>Authorities:</strong>
-      <ul>
-        {currentUser.roles &&
-          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-      </ul>
+      <ul>{currentUser.roles && currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}</ul>
     </div>
   );
 };

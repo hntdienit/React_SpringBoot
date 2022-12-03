@@ -428,6 +428,14 @@ header .icon-loading {
   width: auto;
 }
 
+.booking-details-fields input{ 
+  color: #fff;
+}
+
+.booking-details-fields textarea{ 
+  color: #fff;
+}
+
 .booking-details-fields label {
   display: block;
   margin: 1em 0 0.2em;

@@ -1,63 +1,34 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { FaSignInAlt, FaUserPlus, FaSignOutAlt } from "react-icons/fa";
 
-
 import EventBus from "../../Helpers/Auth/EventBus.jsx";
 import { logout } from "../../Helpers/Auth/Auth.jsx";
 
-import Spinner from "../Spinner/Spinner.jsx";
-
 export default function User() {
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
-
-
-  // const dataUser = [
-  //   {
-  //     name: "dien",
-  //   },
-  //   {
-  //     name: "phi",
-  //   },
-  // ];
-  // const [users, setUsers] = useState(dataUser);
-
-  // //   useEffect(() => {
-
-  // //     fetch("http://localhost:3001/users")
-  // //       .then(resp => resp.json())
-  // //       .then(data => setUsers(data));
-
-  // //   }, []);
-
-  // if (users === null) {
-  //   return <Spinner />;
-  // }
-
-  // moi
-  // const { user: currentUser } = useSelector((state) => state.auth);
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logOut = useCallback(() => {
+        // navigate("/");
     dispatch(logout());
   }, [dispatch]);
 
   useEffect(() => {
     EventBus.on("logout", () => {
       logOut();
+      navigate("/");
     });
-
     return () => {
       // navigate("/");
       EventBus.remove("logout");
     };
   }, [currentUser, logOut]);
-  // moi
 
   return (
     <>

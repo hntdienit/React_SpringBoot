@@ -48,13 +48,13 @@ export default function getData(url, delay = 0) {
 
 //   return getData(`${urlRoot}?${query}`);
 // }
-
+const user = JSON.parse(localStorage.getItem("user"));
 export function createItem(url, item) {
   return fetch(
     url,
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",  Authorization: "Bearer " + user.accessToken},
       body: JSON.stringify(item)
     }
   ).then(r => {

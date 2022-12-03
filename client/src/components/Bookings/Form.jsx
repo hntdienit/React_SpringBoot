@@ -15,6 +15,7 @@ export default function BookingForm({ booking, bookable, onSave, onDelete }) {
           <input
             type="text"
             name="title"
+            disabled
             value={state.title}
             onChange={handleChange}
           />
@@ -33,6 +34,7 @@ export default function BookingForm({ booking, bookable, onSave, onDelete }) {
         <p>
           <textarea
             name="notes"
+            disabled
             rows={6}
             cols={30}
             value={booking.notes}
@@ -41,7 +43,7 @@ export default function BookingForm({ booking, bookable, onSave, onDelete }) {
         </p>
       </div>
 
-      <p className="controls">
+      {/* <p className="controls">
         {!isNew && (
           <button
             className="btn btn-delete"
@@ -58,7 +60,7 @@ export default function BookingForm({ booking, bookable, onSave, onDelete }) {
           <FaCloudUploadAlt />
           <span>{isNew ? "Add Booking" : "Update"}</span>
         </button>
-      </p>
+      </p> */}
     </Fragment>
   ) : null;
 }
