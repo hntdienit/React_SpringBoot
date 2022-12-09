@@ -58,12 +58,15 @@ const Register = () => {
   return (
     <div className="col-md-12 signup-form">
       <div className="card card-container">
-        <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile-img" className="profile-img-card" />
+      
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleRegister}>
           <Form>
             {!successful && (
               <div>
-                <div className="form-group">
+                <div className="title">
+            <label htmlFor="Register">Register</label>
+            </div>
+                <div className="form-group ">
                   <label htmlFor="username">Username</label>
                   <Field name="username" type="text" className="form-control" />
                   <ErrorMessage name="username" component="div" className="alert alert-danger" />
@@ -71,7 +74,7 @@ const Register = () => {
 
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
-                  <Field name="email" type="email" className="form-control" />
+                  <Field name="email"  type="email" className="form-control email" />
                   <ErrorMessage name="email" component="div" className="alert alert-danger" />
                 </div>
 

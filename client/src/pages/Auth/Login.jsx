@@ -54,18 +54,17 @@ const Login = () => {
   return (
     <div className="col-md-12 login-form">
       <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
+       
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleLogin}
         >
           <Form>
-            <div className="form-group">
+            <div className="title">
+            <label htmlFor="Login">Login</label>
+            </div>
+            <div className="form-group " >
               <label htmlFor="username">Username</label>
               <Field name="username" type="text" className="form-control" />
               <ErrorMessage

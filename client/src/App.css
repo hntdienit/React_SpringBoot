@@ -546,3 +546,47 @@ header .icon-loading {
 .user-bookings a:hover {
   text-decoration: underline;
 }
+
+.form-group{
+  width: 300px;
+  margin-top: 20px;
+  color:#eee;
+  font-weight:bold;
+}
+
+.form-control{
+  margin-left: 30px;
+  border-radius: 10px;
+  
+}
+
+.email{
+  margin-left: 60px;
+}
+
+
+.card-container{
+  background-color: #174060;
+  max-width: fit-content;
+   
+  margin-top: 60px;
+  border-radius: 5px;
+ 
+  margin-left: 520px;
+}
+
+.btn-primary{
+  margin-bottom: 10px;
+  font-weight: bolder;
+  background-color: #EEE7BD;
+  color: #20639b;
+}
+
+.title{
+  font-size: larger;
+  padding-top: 1rem;
+  color: #eee;
+  font-weight: bolder;
+}
+
+
