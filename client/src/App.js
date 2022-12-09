@@ -1,6 +1,8 @@
 import { Fragment} from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import routes from "./routes";
 import DefaultLayout from "./layouts/DefaultLayout";
@@ -38,6 +40,7 @@ function App() {
                 );
               })}
             </Routes>
+            <ToastContainer />
           </div>
         </Router>
       </UserProvider>

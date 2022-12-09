@@ -9,19 +9,19 @@ export default function Header() {
       <header>
         <nav>
           <ul>
-            <li>
+            <li className="hearder-item">
               <Link to="/bookings" className="btn btn-header">
                 <FaCalendarAlt />
                 <span>Bookings</span>
               </Link>
             </li>
-            <li>
+            <li className="hearder-item">
               <Link to="/bookables" className="btn btn-header">
                 <FaDoorOpen />
                 <span>Bookables</span>
               </Link>
             </li>
-            <li>
+            <li className="hearder-item">
               <Link to="/users" className="btn btn-header">
                 <FaUsers />
                 <span>Users</span>

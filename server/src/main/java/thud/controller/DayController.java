@@ -2,12 +2,14 @@ package thud.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import thud.entity.Day;
@@ -35,14 +37,14 @@ public class DayController {
         }
     }
 
-    // @GetMapping("/days/{id}")
-    // public ResponseEntity<Session> getDayById(@PathVariable("id") long id) {
-    // Optional<Day> day = dayRepository.findById(id);
+    @GetMapping("/days/{id}")
+    public ResponseEntity<Day> getDayById(@PathVariable("id") long id) {
+        Optional<Day> day = dayRepository.findById(id);
 
-    // if (day.isPresent()) {
-    // return new ResponseEntity<>(day.get(), HttpStatus.OK);
-    // } else {
-    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-    // }
+        if (day.isPresent()) {
+            return new ResponseEntity<>(day.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

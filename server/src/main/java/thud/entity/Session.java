@@ -1,10 +1,14 @@
 package thud.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,9 +23,17 @@ public class Session {
 	@Column(name = "name")
 	private String name;
 
-	// @OneToMany
-	// @JoinColumn(name = "session_id")
-	// private Set<Booking> bookings;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "sessions")
+	private Set<Bookable> bookables = new HashSet<>();
+
+	public Set<Bookable> getBookables() {
+		return bookables;
+	}
+
+	public void setBookables(Set<Bookable> bookables) {
+		this.bookables = bookables;
+	}
 
 	public Session() {
 	}

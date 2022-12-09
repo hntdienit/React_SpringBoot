@@ -19,10 +19,12 @@ export default function BookableEdit() {
   const { data, isLoading } = useBookable(id);
   const formState = bookableFormState(data);
 
+  console.log("formState", formState.state)
+
   useEffect(() => {
     if (currentUser) {
       currentUser.roles.map((role) => {
-        if (role === "ROLE_ADMIN") console.log("setRoleAdmin(true);");
+        // if (role === "ROLE_ADMIN") console.log("setRoleAdmin(true);");/
         setRoleAdmin(true);
         setCheck(true);
       });
@@ -46,7 +48,7 @@ export default function BookableEdit() {
 
   function handleSubmit() {
     // call the mutation function for updating the bookable
-    updateBookable(formState.state);
+    // updateBookable(formState.state);
     console.log("Check formState.state: ", formState.state);
   }
 
@@ -129,22 +131,23 @@ function updateBookablesCache(bookable, queryClient) {
 
 function useDeleteBookable() {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const mutation = useMutation((bookable) => deleteItem(`http://localhost:8080/bookables/${bookable.id}`), {
     /* on success receives the original item as a second argument */
     onSuccess: (response, bookable) => {
       // get all the bookables from the cache
-      const bookables = queryClient.getQueryData("bookables") || [];
+      // const bookables = queryClient.getQueryData("bookables") || [];
 
-      // set the bookables cache without the deleted one
-      queryClient.setQueryData(
-        "bookables",
-        bookables.filter((b) => b.id !== bookable.id)
-      );
+      // // set the bookables cache without the deleted one
+      // queryClient.setQueryData(
+      //   "bookables",
+      //   bookables.filter((b) => b.id !== bookable.id)
+      // );
 
       // If there are other bookables in the same group as the deleted one,
       // navigate to the first
-      navigate(`/bookables/${getIdForFirstInGroup(bookables, bookable) || ""}`);
+      // navigate(`/bookables/${getIdForFirstInGroup(bookables, bookable) || ""}`);
+      navigate("/");
     },
   });
 

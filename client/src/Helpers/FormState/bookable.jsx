@@ -40,8 +40,8 @@ export default function useFormState(data) {
 
 
     function handleChecked(e) {
-    // console.log("Check e.target: ", e.target + "  " + checked);
-    const { name, value, checked } = e.target;
+      const { name, value, checked } = e.target;
+      console.log("Check e.target: ", e.target + "  " + name);
     console.log("Check e.target:", checked);
     const values = new Set(state[name]);
 

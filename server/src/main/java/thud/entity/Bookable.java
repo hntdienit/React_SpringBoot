@@ -1,10 +1,9 @@
 package thud.entity;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,8 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // import antlr.collections.List;
 
@@ -32,9 +29,6 @@ public class Bookable {
 	@Column(name = "groupName")
 	private String group;
 
-	@Column(name = "img")
-	private String img;
-
 	@Column(name = "title")
 	private String title;
 
@@ -46,32 +40,38 @@ public class Bookable {
 	@JoinColumn(name = "bookable_id")
 	private Set<Booking> bookings;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "bookable_day", joinColumns = @JoinColumn(name = "bookable_id"), inverseJoinColumns = @JoinColumn(name = "day_id"))
-	private List<Day> days = new ArrayList<>();
+	private Set<Day> days = new HashSet<>();
 
 	// Session
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "bookable_session", joinColumns = @JoinColumn(name = "bookable_id"), inverseJoinColumns = @JoinColumn(name = "session_id"))
-	private List<Session> sessions = new ArrayList<>();
+	private Set<Session> sessions = new HashSet<>();
 
 	public Bookable() {
 
 	}
 
-	public Bookable(Long id, String group, String img, String title, String notes) {
+	public Bookable(Long id, String group, String title, String notes) {
 		this.id = id;
 		this.group = group;
-		this.img = img;
 		this.title = title;
 		this.notes = notes;
 	}
 
-	public Bookable(String group, String img, String title, String notes) {
+	public Bookable(String group, String title, String notes) {
 		this.group = group;
-		this.img = img;
 		this.title = title;
 		this.notes = notes;
+	}
+
+	public Bookable(String group, String title, String notes,
+			Set<Day> days) {
+		this.group = group;
+		this.title = title;
+		this.notes = notes;
+		this.days = days;
 	}
 
 	public Long getId() {
@@ -88,14 +88,6 @@ public class Bookable {
 
 	public void setGroup(String group) {
 		this.group = group;
-	}
-
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
 	}
 
 	public String getTitle() {
@@ -122,24 +114,29 @@ public class Bookable {
 		this.bookings = bookings;
 	}
 
-	public List<Day> getDays() {
+	public Set<Day> getDays() {
 		return days;
 	}
 
-	public void setDays(List<Day> days) {
+	public void setDays(Set<Day> days) {
 		this.days = days;
 	}
 
-	public List<Session> getSessions() {
+	public Set<Session> getSessions() {
 		return sessions;
 	}
 
-	public void setSessions(List<Session> sessions) {
+	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
 
 	@Override
 	public String toString() {
 		return "Bookable [id=" + id + ", group=" + group + ", title=" + title + ", notes=" + notes + "]";
+	}
+
+	public void addDays(Day day) {
+		this.days.add(day);
+		day.getBookables().add(this);
 	}
 }

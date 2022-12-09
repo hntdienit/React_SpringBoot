@@ -33,7 +33,7 @@ export default function User() {
   return (
     <>
       <ul className="header-end">
-        <li>
+        <li className="hearder-item">
           {currentUser ? (
             <Link to="/profile" className="btn btn-header">
               <span>{currentUser.username}</span>
@@ -45,7 +45,7 @@ export default function User() {
             </Link>
           )}
         </li>
-        <li>
+        <li className="hearder-item">
           {currentUser ? (
             <Link to="#" className="btn btn-header" onClick={logOut}>
               <FaSignOutAlt />
