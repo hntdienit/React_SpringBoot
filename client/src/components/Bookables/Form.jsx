@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function BookableForm({ formState = {}, handleSubmit, handleDelete, roleAdmin }) {
-
   const { state = {}, handleChange, handleChecked } = formState;
   const { title = "", group = "", notes = "" } = state;
   const { days = [], sessions = [] } = state;
@@ -33,59 +32,53 @@ export default function BookableForm({ formState = {}, handleSubmit, handleDelet
           <h2>{handleDelete ? "Edit" : "New"} Bookable</h2>
         </div>
 
+        <label htmlFor="title" className="field">
+          Title
+        </label>
+        <input type="text" name="title" value={title} onChange={handleChange} />
 
-        <label htmlFor="title" className="field">Title</label>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-        />
+        <label htmlFor="group" className="field">
+          Group
+        </label>
+        <input type="text" name="group" value={group} onChange={handleChange} />
 
-        <label htmlFor="group" className="field">Group</label>
-        <input
-          type="text"
-          name="group"
-          value={group}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="notes" className="field">Notes</label>
-        <textarea
-          name="notes"
-          value={notes}
-          onChange={handleChange}
-          rows="4"
-        />
+        <label htmlFor="notes" className="field">
+          Notes
+        </label>
+        <textarea name="notes" value={notes} onChange={handleChange} rows="4" />
 
         <div className="bookable-availability">
           <ul>
             {daysArray.data?.map((item) => (
-              <li key={item.id}><label>
-                <input
-                  // checked={days && days.map(data => data.name).indexOf(day) != -1}
-                  type="checkbox"
-                  name="days"
-                  value={item.id}
-                  onChange={handleChecked}
-                />
-                {item.name}
-              </label></li>
+              <li key={item.id}>
+                <label>
+                  <input
+                    checked={days.includes(item.id) && true}
+                    type="checkbox"
+                    name="days"
+                    value={item.id}
+                    onChange={handleChecked}
+                  />
+                  {item.name}
+                </label>
+              </li>
             ))}
           </ul>
 
           <ul>
             {sessionsArray.data?.map((item) => (
-              <li key={item.id}><label>
-                <input
-                  // checked={sessions && sessions.map(data => data.name).indexOf(session) !== -1}
-                  type="checkbox"
-                  name="sessions"
-                  value={item.id}
-                  onChange={handleChecked}
-                />
-                {item.name}
-              </label></li>
+              <li key={item.id}>
+                <label>
+                  <input
+                    checked={sessions.includes(item.id) && true}
+                    type="checkbox"
+                    name="sessions"
+                    value={item.id}
+                    onChange={handleChecked}
+                  />
+                  {item.name}
+                </label>
+              </li>
             ))}
           </ul>
         </div>
@@ -93,26 +86,16 @@ export default function BookableForm({ formState = {}, handleSubmit, handleDelet
 
       <p className="controls">
         {handleDelete && (
-          <button
-            className="btn btn-delete controls-alt"
-            onClick={handleDelete}
-          >
+          <button className="btn btn-delete controls-alt" onClick={handleDelete}>
             <FaTrash />
             <span>Delete</span>
           </button>
         )}
-        <Link
-          className="btn"
-          to={state.id ? `/bookables/${state.id}` : "/bookables"}
-          replace={false}
-        >
+        <Link className="btn" to={state.id ? `/bookables/${state.id}` : "/bookables"} replace={false}>
           <FaWindowClose />
           <span>Cancel</span>
         </Link>
-        <button
-          className="btn"
-          onClick={handleSubmit}
-        >
+        <button className="btn" onClick={handleSubmit}>
           <FaCloudUploadAlt />
           <span>Save</span>
         </button>
