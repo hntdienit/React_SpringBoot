@@ -91,7 +91,7 @@ export default function BookableForm({ formState = {}, handleSubmit, handleDelet
             <span>Delete</span>
           </button>
         )}
-        <Link className="btn" to={state.id ? `/bookables/${state.id}` : "/bookables"} replace={false}>
+        <Link className="btn" to={`/bookables`} replace={false}>
           <FaWindowClose />
           <span>Cancel</span>
         </Link>
