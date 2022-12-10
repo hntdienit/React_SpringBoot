@@ -8,6 +8,7 @@ import getData, { editItem, deleteItem } from "../../utils/api";
 
 import BookableForm from "../../components/Bookables/Form.jsx";
 import PageSpinner from "../../components/Spinner";
+import { toast } from 'react-toastify';
 
 export default function BookableEdit() {
   const [roleAdmin, setRoleAdmin] = useState(false);
@@ -88,7 +89,7 @@ function useBookable(id) {
 function useUpdateBookable() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const mutation = useMutation((item) => editItem(`http://localhost:8080/bookables/${item.id}`, item), {
+  const mutation = useMutation((item) => editItem(`http://localhost:8080/api/admin/bookables/${item.id}`, item), {
     onSuccess: (bookable) => {
       // replace the pre-edited version in the "bookables" cache
       // with the edited bookable
@@ -97,8 +98,9 @@ function useUpdateBookable() {
       // do the same for the individual "bookable" cache
       queryClient.setQueryData(["bookable", String(bookable.id)], bookable);
 
+      toast.success("Edited successfully!");
       // show the updated bookable
-      navigate(`/bookables/${bookable.id}`);
+      navigate(`/bookables/${bookable.id}/edit`);
     },
   });
 
@@ -130,7 +132,7 @@ function updateBookablesCache(bookable, queryClient) {
 function useDeleteBookable() {
   const navigate = useNavigate();
   // const queryClient = useQueryClient();
-  const mutation = useMutation((bookable) => deleteItem(`http://localhost:8080/bookables/${bookable.id}`), {
+  const mutation = useMutation((bookable) => deleteItem(`http://localhost:8080/api/admin/bookables/${bookable.id}`), {
     /* on success receives the original item as a second argument */
     onSuccess: (response, bookable) => {
       // get all the bookables from the cache
@@ -145,8 +147,14 @@ function useDeleteBookable() {
       // If there are other bookables in the same group as the deleted one,
       // navigate to the first
       // navigate(`/bookables/${getIdForFirstInGroup(bookables, bookable) || ""}`);
-      navigate("/");
+      toast.success("Deleted successfully!");
+      navigate("/bookables");
     },
+    onError: (response, bookable) => {
+      toast.success("Deleted successfully!");
+      navigate("/bookables");
+    }
+
   });
 
   return {

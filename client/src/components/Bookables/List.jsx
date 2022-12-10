@@ -41,7 +41,7 @@ export default function BookablesList({ group, bookableIndex, bookables, dispatc
     dispatch({ type: "NEXT_BOOKABLE" });
   }
 
-  return (
+  return bookables ? (
     <>
       <div>
         <select value={group} onChange={changeGroup}>
@@ -69,5 +69,5 @@ export default function BookablesList({ group, bookableIndex, bookables, dispatc
         </p>
       </div>
     </>
-  );
+  ) : null;
 }

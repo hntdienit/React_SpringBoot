@@ -8,7 +8,7 @@ import { createItem } from "../../utils/api";
 
 import BookableForm from "../../components/Bookables/Form.jsx";
 import PageSpinner from "../../components/Spinner";
-
+import { toast } from 'react-toastify';
 
 export default function BookableNew() {
   const [roleAdmin, setRoleAdmin] = useState(false);
@@ -27,6 +27,8 @@ export default function BookableNew() {
     onSuccess: (bookable) => {
       queryClient.setQueryData("bookables", (old) => [...(old || []), bookable]);
 
+      toast.success("Created new bookable successfully!");
+
       navigate(`/bookables/${bookable.id}`);
     },
   });
@@ -35,8 +37,8 @@ export default function BookableNew() {
     if (currentUser) {
       currentUser.roles.map((role) => {
         // console.log(role)
-        if (role === "ROLE_ADMIN") 
-        setRoleAdmin(true);
+        if (role === "ROLE_ADMIN")
+          setRoleAdmin(true);
         setCheck(true)
       });
     }

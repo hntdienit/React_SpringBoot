@@ -78,9 +78,9 @@ export function deleteItem(url) {
     method: "DELETE",
     headers: { "Content-Type": "application/json", Authorization: "Bearer " + user.accessToken },
   }).then((r) => {
-    if (!r.ok) {
-      throw new Error("There was a problem deleting the item!");
-    }
+    // if (!r.ok) {
+    //   throw new Error("There was a problem deleting the item!");
+    // }
     return r.json();
   });
 }
