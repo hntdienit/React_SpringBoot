@@ -32,6 +32,9 @@ public class Booking {
     // @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String date;
 
+    @Column(name = "notes")
+    private String notes;
+
     @Column(name = "bookable_id", nullable = false, insertable = false, updatable = false)
     private Long bookable_id;
 
@@ -47,6 +50,14 @@ public class Booking {
     @JoinColumn(name = "bookable_id")
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private Bookable bookable;
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
     public String getTitle() {
         return title;

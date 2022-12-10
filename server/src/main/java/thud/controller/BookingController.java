@@ -27,12 +27,10 @@ public class BookingController {
     @ResponseBody
     public ResponseEntity<List<Booking>> getBookingByParam(@RequestParam("bookableId") Long bookableId,
             @RequestParam("date_gte") String date_gte, @RequestParam("date_lte") String date_lte) {
-        System.out.println("Check params: " + bookableId + " " + date_gte + " " + date_lte);
 
         List<Booking> bookingData = new ArrayList<>();
 
         bookingRepository.getBookingByParam(bookableId, date_gte, date_lte).forEach(bookingData::add);
-        ;
 
         if (bookingData.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
