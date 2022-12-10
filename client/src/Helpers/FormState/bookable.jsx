@@ -5,20 +5,27 @@ export default function useFormState(data) {
   let arrDay = [];
   let arrSession = [];
 
+  // console.log("", ])
+
   useEffect(() => {
     if (data) {
-      const dataDay = data.days;
-      dataDay?.map((item) => {
-        arrDay.push(item.id);
-      });
-      data.days = arrDay;
+      if (data.days[0].id && data.sessions[0].id) {
+        if (data.days === [] || data.sessions === []) {
+          setState(data);
+        } else {
+          const dataDay = data.days;
+          dataDay?.map((item) => {
+            arrDay.push(item.id);
+          });
+          data.days = arrDay;
 
-      const dataSession = data.sessions;
-      dataSession?.map((item) => {
-        arrSession.push(item.id);
-      });
-      data.sessions = arrSession;
-
+          const dataSession = data.sessions;
+          dataSession?.map((item) => {
+            arrSession.push(item.id);
+          });
+          data.sessions = arrSession;
+        }
+      }
       setState(data);
     }
   }, [data]);

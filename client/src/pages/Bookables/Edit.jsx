@@ -19,15 +19,6 @@ export default function BookableEdit() {
   const { data, isLoading } = useBookable(id);
   const formState = bookableFormState(data);
 
-  // let clientFormState = formState.state;
-  // let arr = [];
-
-  // formState.state.days?.map((item) => {
-  //   arr.push(item.id);
-  // });
-
-  // console.log(stateDay?.days);
-
   useEffect(() => {
     if (currentUser) {
       currentUser.roles.map((role) => {
