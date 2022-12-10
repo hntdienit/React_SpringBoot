@@ -4,30 +4,26 @@ export default function useFormState(data) {
   const [state, setState] = useState(data);
   let arrDay = [];
   let arrSession = [];
-
-  // console.log("", ])
+  console.log("Check data: ", state);
 
   useEffect(() => {
     if (data) {
-      if (data.days[0].id && data.sessions[0].id) {
-        if (data.days === [] || data.sessions === []) {
-          setState(data);
-        } else {
-          const dataDay = data.days;
-          dataDay?.map((item) => {
-            arrDay.push(item.id);
-          });
-          data.days = arrDay;
+      if (data.days && data?.days[0]?.id && data?.sessions[0]?.id) {
+        const dataDay = data.days;
+        dataDay?.map((item) => {
+          arrDay.push(item.id);
+        });
+        data.days = arrDay;
 
-          const dataSession = data.sessions;
-          dataSession?.map((item) => {
-            arrSession.push(item.id);
-          });
-          data.sessions = arrSession;
-        }
+        const dataSession = data.sessions;
+        dataSession?.map((item) => {
+          arrSession.push(item.id);
+        });
+        data.sessions = arrSession;
       }
-      setState(data);
     }
+    setState(data);
+
   }, [data]);
 
   function handleChange(e) {

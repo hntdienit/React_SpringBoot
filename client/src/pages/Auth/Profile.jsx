@@ -43,7 +43,7 @@ const Profile = () => {
                     <h3 className="mb-0">Authorities</h3>
                   </div>
                   {currentUser.roles && currentUser.roles.map((role, index) => <div key={index} className="col-sm-9 text-secondary hearder-item">{role}</div>)}
-                  
+
                 </div>
               </div>
             </div>

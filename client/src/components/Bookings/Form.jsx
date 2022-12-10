@@ -30,7 +30,7 @@ export default function BookingForm({ booking, bookable, onSave, onDelete }) {
         <label>Session</label>
         <p>{booking.session}</p>
 
-        <label>Notes</label>
+        {/* <label>Notes</label>
         <p>
           <textarea
             name="notes"
@@ -40,7 +40,7 @@ export default function BookingForm({ booking, bookable, onSave, onDelete }) {
             value={booking.notes}
             onChange={handleChange}
           />
-        </p>
+        </p> */}
       </div>
 
       {/* <p className="controls">

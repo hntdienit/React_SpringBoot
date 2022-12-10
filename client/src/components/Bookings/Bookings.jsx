@@ -15,7 +15,6 @@ export default function Bookings({ bookable }) {
   const weekStart = shortISO(week.start);
 
   const { bookings } = useBookings(bookable?.id, week.start, week.end);
-  console.log(bookings)
   const selectedBooking = bookings?.[booking?.session]?.[booking.date];
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function Bookings({ bookable }) {
   return bookable ? (
     <div className="bookings">
       <div>
-        <WeekPicker/>
+        <WeekPicker />
 
         <BookingsGridSlide
           week={week}
