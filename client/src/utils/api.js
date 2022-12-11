@@ -47,6 +47,7 @@ export default function getData(url, delay = 0) {
 //   return getData(`${urlRoot}?${query}`);
 // }
 const user = JSON.parse(localStorage.getItem("user"));
+
 export function createItem(url, item) {
   return fetch(url, {
     method: "POST",

@@ -1,24 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
 
-import getData from "../../utils/api";
-import getData2 from "../../utils/api";
-
-// let days = {};
-// getData ('http://localhost:3001/days').then(
-//   (data) => {
-//   //  console.log(data);
-//     days = data
-//   }
-// );
-
-// let sessions={};
-// getData2('http://localhost:3001/sessions').then(
-//   (data) => {
-//     //  console.log(data);
-//     sessions = data
-//   }
-// )
-
 export default function BookablesList({ group, bookableIndex, bookables, dispatch }) {
   const bookablesInGroup = bookables.filter((b) => b.group === group);
   const groups = [...new Set(bookables.map((b) => b.group))];

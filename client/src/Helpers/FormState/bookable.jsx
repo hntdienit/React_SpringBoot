@@ -4,7 +4,6 @@ export default function useFormState(data) {
   const [state, setState] = useState(data);
   let arrDay = [];
   let arrSession = [];
-  console.log("Check data: ", state);
 
   useEffect(() => {
     if (data) {
@@ -33,34 +32,9 @@ export default function useFormState(data) {
     });
   }
 
-  // function handleChecked(e) {
-  //   // console.log("Check e.target: ", e.target + "  " + checked);
-  //   const { name, value, checked } = e.target;
-  //   console.log("Check e.target:", checked);
-  //   const values = new Set(state[name]);
-
-  //   console.log(values);
-
-  //   const intValue = parseInt(value, 10);
-
-  //   values.delete(intValue);
-  //   if (checked) values.add(intValue);
-  //   // else values.delete
-
-  //   setState({
-  //     ...state,
-  //     [name]: [...values],
-  //   });
-
-  // }
-
   function handleChecked(e) {
     const { name, value, checked } = e.target;
-    // console.log("Check e.target: ", e.target + "  " + name);
-    // console.log("Check e.target:", checked);
     const values = new Set(state[name]);
-
-    // console.log(values);
 
     const intValue = parseInt(value, 10);
 

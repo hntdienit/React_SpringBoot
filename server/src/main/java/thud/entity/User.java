@@ -60,6 +60,11 @@ public class User {
     this.notes = notes;
   }
 
+  // @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_id", orphanRemoval =
+  // true)
+  // @JsonIgnore
+  // private Set<Booking> bookings;
+
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
@@ -120,4 +125,12 @@ public class User {
   public void setImg(String img) {
     this.img = img;
   }
+
+  // public Set<Booking> getBookings() {
+  // return bookings;
+  // }
+
+  // public void setBookings(Set<Booking> bookings) {
+  // this.bookings = bookings;
+  // }
 }
