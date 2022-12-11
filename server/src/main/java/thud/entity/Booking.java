@@ -46,9 +46,12 @@ public class Booking {
         this.session = session;
     }
 
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "user_id")
+    // private User user;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookable_id")
-    // @OnDelete(action = OnDeleteAction.CASCADE)
     private Bookable bookable;
 
     public String getNotes() {
@@ -66,14 +69,6 @@ public class Booking {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    // public Session getSession() {
-    // return session;
-    // }
-
-    // public void setSession(Session session) {
-    // this.session = session;
-    // }
 
     public String getDate() {
         return date;
@@ -98,5 +93,12 @@ public class Booking {
     public void setBookable_id(Long bookable_id) {
         this.bookable_id = bookable_id;
     }
+    // public User getUser() {
+    // return user;
+    // }
+
+    // public void setUser(User user) {
+    // this.user = user;
+    // }
 
 }
