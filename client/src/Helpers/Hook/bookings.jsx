@@ -10,16 +10,17 @@ import { getGrid, transformBookings } from "../../components/Bookings/grid-build
 export function useBookings(bookableId, startDate, endDate) {
   const start = shortISO(startDate);
   const end = shortISO(endDate);
-
+  
   const urlRoot = "http://localhost:8080/bookings";
 
-  const queryString = `bookableId=${bookableId}` +
+  const queryString = `bookableId=${bookableId ? bookableId : 1}` +
     `&date_gte=${start}&date_lte=${end}`;
 
   const query = useQuery(
     ["bookings", bookableId, start, end],
     () => getData(`${urlRoot}?${queryString}`)
   );
+  
   return {
     bookings: query.data ? transformBookings(query.data) : {},
     ...query

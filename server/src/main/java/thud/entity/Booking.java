@@ -1,9 +1,9 @@
 package thud.entity;
 
-import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "bookings")
@@ -29,6 +32,9 @@ public class Booking {
     // @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String date;
 
+    @Column(name = "notes")
+    private String notes;
+
     @Column(name = "bookable_id", nullable = false, insertable = false, updatable = false)
     private Long bookable_id;
 
@@ -40,10 +46,18 @@ public class Booking {
         this.session = session;
     }
 
-    @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bookable_id")
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     private Bookable bookable;
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
     public String getTitle() {
         return title;

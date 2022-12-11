@@ -1,8 +1,8 @@
-import {Fragment} from "react";
+import { Fragment } from "react";
 
-export default function Booking ({booking, bookable}) {
+export default function Booking({ booking, bookable }) {
 
-  const {title, date, session, notes} = booking;
+  const { title, date, session, notes } = booking;
 
   return (
     <div className="booking-details-fields">
