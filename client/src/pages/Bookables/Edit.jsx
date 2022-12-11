@@ -23,7 +23,6 @@ export default function BookableEdit() {
   useEffect(() => {
     if (currentUser) {
       currentUser.roles.map((role) => {
-        // if (role === "ROLE_ADMIN") console.log("setRoleAdmin(true);");/
         setRoleAdmin(true);
         setCheck(true);
       });
@@ -48,7 +47,6 @@ export default function BookableEdit() {
   function handleSubmit() {
     // call the mutation function for updating the bookable
     updateBookable(formState.state);
-    // console.log("Check formState.state: ", formState.state);
   }
 
   if (isUpdateError || isDeleteError) {

@@ -36,7 +36,6 @@ export default function BookableNew() {
   useEffect(() => {
     if (currentUser) {
       currentUser.roles.map((role) => {
-        // console.log(role)
         if (role === "ROLE_ADMIN")
           setRoleAdmin(true);
         setCheck(true)
